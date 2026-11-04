@@ -1,0 +1,16 @@
+tests/ut/patch/worker/test_patch_v2_uva_prefix.py
+  h_645bbb62f716a9 1-140
+vllm_ascend/patch/worker/patch_v2/patch_uva.py
+  h_645bbb62f716a9 84,87,92-97,112,115,120-125,149,163-166,169-173,177-181,184-195,197-203,210-211
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "47329041ad8818f2f38e604a343e2a8a44cf893c",
+  "prompts": {},
+  "humans": {
+    "h_645bbb62f716a9": {
+      "author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+tests/ut/kv_offload/mooncake_v2/test_pull_scheduler.py
+  h_645bbb62f716a9 698-726
+vllm_ascend/distributed/kv_transfer/kv_p2p/mooncake/pull_scheduler.py
+  h_645bbb62f716a9 633-659
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "cd3aca201ef8f9b5edb199eaeb044aa2c813af6a",
+  "prompts": {},
+  "humans": {
+    "h_645bbb62f716a9": {
+      "author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

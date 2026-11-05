@@ -1,0 +1,26 @@
+vllm_ascend/patch/platform/__init__.py
+  s_38e457bb09c672::t_c0a51b1fd025b9 21,132-139
+vllm_ascend/patch/platform/patch_kv_cache_admission.py
+  s_38e457bb09c672::t_c0a51b1fd025b9 1-63
+tests/ut/patch/platform/test_patch_kv_cache_admission.py
+  s_38e457bb09c672::t_e9d98f486e6af4 157,184-189
+  s_38e457bb09c672::t_c0a51b1fd025b9 1-55,63-156,158-183
+  s_38e457bb09c672::t_91be96cec87dfd 56-62
+  s_38e457bb09c672::t_954d88da150659 190-195
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "3f924001dc13ed4dab47b5627e28143e9679b85e",
+  "prompts": {},
+  "sessions": {
+    "s_38e457bb09c672": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1aa86-3116-78f0-9518-915a1636aa09",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+tests/e2e/nightly/single_node/ops/singlecard_ops/test_uva_view.py
+  s_38e457bb09c672::t_e215ee74c2224d 14,161-183
+  s_38e457bb09c672::t_67fbb81e8b9db5 184-185
+vllm_ascend/patch/worker/patch_v2/patch_uva.py
+  s_38e457bb09c672::t_2e5ed90d455d59 246-249
+tests/ut/patch/worker/test_patch_v2_uva_prefix.py
+  s_38e457bb09c672::t_4c64433bba5043 7-8,193-225
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "35d32ba28bc9cf353d639149bb7197c1c68ee97d",
+  "prompts": {},
+  "sessions": {
+    "s_38e457bb09c672": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1aa86-3116-78f0-9518-915a1636aa09",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

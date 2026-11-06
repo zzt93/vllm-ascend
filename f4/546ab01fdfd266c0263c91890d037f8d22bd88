@@ -1,0 +1,27 @@
+tests/ut/attention/test_fia_kv_layout.py
+  s_369b8647fdac87::t_a3f474b2b950c6 1-47
+tests/ut/attention/test_attention_v1.py
+  s_369b8647fdac87::t_a3f474b2b950c6 39-64,702-727
+vllm_ascend/attention/attention_v1.py
+  s_369b8647fdac87::t_a3f474b2b950c6 51,240-247,533,538,542,554,558,562-564,620,786,854,946-957
+vllm_ascend/attention/fia_kv_layout.py
+  s_369b8647fdac87::t_a3f474b2b950c6 1-32
+tests/e2e/nightly/single_node/ops/singlecard_ops/test_fia_kv_layout.py
+  s_369b8647fdac87::t_a3f474b2b950c6 1-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "f4546ab01fdfd266c0263c91890d037f8d22bd88",
+  "prompts": {},
+  "sessions": {
+    "s_369b8647fdac87": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1afe1-6f7a-72c1-823b-8529e98583c0",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

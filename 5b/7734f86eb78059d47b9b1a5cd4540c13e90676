@@ -1,0 +1,19 @@
+release_notes/fragments/21259.yaml
+  s_33808952826653::t_cc022fa02cb887 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "5b7734f86eb78059d47b9b1a5cd4540c13e90676",
+  "prompts": {},
+  "sessions": {
+    "s_33808952826653": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ae9d-b586-70e3-92f0-c3647b57195b",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

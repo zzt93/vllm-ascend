@@ -1,0 +1,42 @@
+tests/ut/worker/test_device_metadata.py
+  s_33808952826653::t_75b98aa654ac2d 465-488
+vllm_ascend/worker/device_metadata.py
+  s_33808952826653::t_8bf1c0b3445f92 183,185,191-194
+vllm_ascend/attention/dsa_v1.py
+  s_33808952826653::t_8bf1c0b3445f92 3,736-748,753-756,1368-1372
+  s_33808952826653::t_3e08db0bb739e9 1751-1757,1773,1777-1810,2052,2056-2060,2078-2085,2087-2090
+  s_33808952826653::t_0ab9dc7da6f803 749-752,1311-1312
+tests/ut/attention/test_dsa_metadata_builders.py
+  s_33808952826653::t_75b98aa654ac2d 42,189-230,232-235,244-252,258-261
+  s_33808952826653::t_0ab9dc7da6f803 231,236-243
+  s_33808952826653::t_932936f995e8d7 253-257
+  s_33808952826653::t_2cc0443289cb56 262
+tests/ut/attention/test_dsa_attn_kv_plan.py
+  s_33808952826653::t_0ab9dc7da6f803 17,64-86
+  s_33808952826653::t_864e23833c4a82 87-88
+vllm_ascend/attention/dsa_attn_kv_plan.py
+  s_33808952826653::t_8bf1c0b3445f92 33-51
+vllm_ascend/worker/v2/model_runner.py
+  s_33808952826653::t_8bf1c0b3445f92 71,480-481
+  s_33808952826653::t_da62ef910b698d 482
+tests/e2e/pull_request/one_card/aclgraph/test_dsa_metadata_graph.py
+  s_33808952826653::t_61ea6c5b41309c 1-66,68-76,78-84,87,90-121,123-129,136,139,141,145-155
+  s_33808952826653::t_54cd3246630c6e 67,77,85-86,88-89,130-135,138,140,142-144
+  s_33808952826653::t_1c3a2660448c33 122,137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "269cc63ed6545d3ed9a26391c9913d2c9e4d82ce",
+  "prompts": {},
+  "sessions": {
+    "s_33808952826653": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ae9d-b586-70e3-92f0-c3647b57195b",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

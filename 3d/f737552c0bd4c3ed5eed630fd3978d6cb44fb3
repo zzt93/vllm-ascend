@@ -1,0 +1,50 @@
+vllm_ascend/worker/v2/aclgraph_utils.py
+  s_38e457bb09c672::t_8ce1fe26354084 45,223,237-240
+vllm_ascend/attention/context_parallel/dsa_cp.py
+  s_38e457bb09c672::t_bce09275269748 17,133,143,340,343-355,391,426
+vllm_ascend/attention/context_parallel/dsa_v41_cp.py
+  s_38e457bb09c672::t_c1f6db3e6c9f22 17,148,151-154,263-273,292,302
+mkdocs.yml
+  s_38e457bb09c672::t_f946b1c56f5b5b 353
+tests/ut/compilation/test_cp_graph_fingerprint.py
+  s_38e457bb09c672::t_693525afc0df19 1-84
+docs/source/developer_guide/Design_Documents/context_parallel_piecewise_graph.md
+  s_38e457bb09c672::t_77c6f1e16cfaa0 1-336
+vllm_ascend/attention/context_parallel/graph_spec.py
+  s_38e457bb09c672::t_bce09275269748 1-237
+vllm_ascend/envs.py
+  s_38e457bb09c672::t_eb35e930dd5964 75-80
+vllm_ascend/compilation/cp_graph_fingerprint.py
+  s_38e457bb09c672::t_bc055f4706cb57 1-40,42-182
+  s_38e457bb09c672::t_bce09275269748 41
+vllm_ascend/worker/v2/pcp_manager.py
+  s_33808952826653::t_64cee2e24e2c78 41,274-277
+tests/ut/attention/context_parallel/test_cp_graph_spec.py
+  s_38e457bb09c672::t_0a87266fb2dd34 1-172
+docs/source/developer_guide/Design_Documents/index.md
+  s_38e457bb09c672::t_715b2b99ebe3d6 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "3df737552c0bd4c3ed5eed630fd3978d6cb44fb3",
+  "prompts": {},
+  "sessions": {
+    "s_33808952826653": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ae9d-b586-70e3-92f0-c3647b57195b",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    },
+    "s_38e457bb09c672": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1aa86-3116-78f0-9518-915a1636aa09",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

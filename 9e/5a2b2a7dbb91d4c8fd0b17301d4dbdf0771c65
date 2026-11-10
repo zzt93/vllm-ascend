@@ -1,0 +1,35 @@
+tests/ut/attention/context_parallel/test_cp_graph_spec.py
+  s_dd28c82cba6561::t_0629f4c05d616c 1-172
+tests/ut/compilation/test_cp_graph_fingerprint.py
+  s_dd28c82cba6561::t_61ef171d257fc5 1-84
+vllm_ascend/worker/v2/pcp_manager.py
+  s_dd28c82cba6561::t_7c48122a8a4737 41,274-277
+vllm_ascend/attention/context_parallel/graph_spec.py
+  s_dd28c82cba6561::t_c401d6d1289360 1-237
+vllm_ascend/attention/context_parallel/dsa_v41_cp.py
+  s_dd28c82cba6561::t_7bd1f166173c97 19,155,158-161,289,299,354-364,380,404,414,430
+vllm_ascend/attention/context_parallel/dsa_cp.py
+  s_dd28c82cba6561::t_cfeb03d158172d 17,133,143,340,343-355,391,426
+vllm_ascend/compilation/cp_graph_fingerprint.py
+  s_dd28c82cba6561::t_b9bc96a2b5b666 1-176
+vllm_ascend/worker/v2/aclgraph_utils.py
+  s_dd28c82cba6561::t_1d033d9a323b0d 45,223,237-240
+tests/ut/attention/test_dsa_cp.py
+  s_dd28c82cba6561::t_60b2128e6911e1 12,23-25,78-79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "9e5a2b2a7dbb91d4c8fd0b17301d4dbdf0771c65",
+  "prompts": {},
+  "sessions": {
+    "s_dd28c82cba6561": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c3b2-9fad-72a2-836b-d0edae76e7e0",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+tests/e2e/nightly/single_node/ops/singlecard_ops/test_fia_kv_layout.py
+  s_5c0af88087199a::t_59ab55ffa69c7f 8-9,107-112,115-117,130-135,139-140
+  s_5c0af88087199a::t_9ed83daf726d96 67
+  s_5c0af88087199a::t_83a890b0931fe4 3-4,11-16,18-19,54,66,68-106,113-114,118-129,136-138,141-162
+vllm_ascend/attention/attention_v1.py
+  s_5c0af88087199a::t_59ab55ffa69c7f 508-510
+  s_5c0af88087199a::t_43245a201193c9 246-247,506-507,511-514,516-527,548
+  s_5c0af88087199a::t_ef899061d2e7cd 515
+vllm_ascend/attention/fia_kv_layout.py
+  s_5c0af88087199a::t_43245a201193c9 5-6,33-37
+tests/ut/attention/test_fia_kv_layout.py
+  s_5c0af88087199a::t_43245a201193c9 4,48-65
+tests/ut/attention/test_attention_v1.py
+  s_5c0af88087199a::t_cbb5f54c985815 56
+  s_5c0af88087199a::t_83a890b0931fe4 39-52,54-55,57-70,76-77,102-107
+  s_5c0af88087199a::t_59ab55ffa69c7f 53,85,89
+  s_5c0af88087199a::t_4f8c8a15d3db94 71-75
+  s_5c0af88087199a::t_1277c3899713eb 78-84,86-88,90-91
+release_notes/fragments/21187.yaml
+  s_5c0af88087199a::t_43245a201193c9 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "861eda1b2d450a147c4af48e2d7ce75993aa668f",
+  "prompts": {},
+  "sessions": {
+    "s_5c0af88087199a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c9b3-b23a-7f62-8683-60cc009c78dd",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+release_notes/fragments/21107.yaml
+  s_89bceff37d28ff::t_3c9bd15ff2bd40 4
+vllm_ascend/patch/platform/patch_kv_cache_admission.py
+  s_89bceff37d28ff::t_5fceda4572ddb2 31-34
+tests/ut/patch/platform/test_patch_kv_cache_admission.py
+  s_89bceff37d28ff::t_3c9bd15ff2bd40 124-126,129,135-138,141,155
+  s_89bceff37d28ff::t_4cca40678b1906 116-117
+  s_89bceff37d28ff::t_5fceda4572ddb2 30,47,70-71,99-102,104,111-114,118-123,127-128,130-134,139-140,142-154,156-159
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b347a914c6db469eed08519fca443ed01cf2990c",
+  "prompts": {},
+  "sessions": {
+    "s_89bceff37d28ff": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c8e1-076c-7392-b974-b4da8265a4c7",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

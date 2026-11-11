@@ -1,0 +1,23 @@
+tests/ut/distributed/ascend_store/test_metadata.py
+  s_74e32ca50b94f1::t_d161271bee3602 395-406,416-431
+  s_74e32ca50b94f1::t_179070b3809368 407-415
+  s_74e32ca50b94f1::t_dbc0a56fc34f3a 432-441
+vllm_ascend/distributed/kv_transfer/kv_pool/ascend_store/metadata.py
+  s_74e32ca50b94f1::t_25ea735eec9986 335-337,445,488-494,510-513
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "9a5f4164089a76221031edb0f19fda2847d86690",
+  "prompts": {},
+  "sessions": {
+    "s_74e32ca50b94f1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c552-7f8e-7951-b092-6d52877cb74a",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

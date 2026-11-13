@@ -1,0 +1,16 @@
+tests/ut/ops/test_kda_gate.py
+  h_645bbb62f716a9 16,23,51-86
+vllm_ascend/ops/triton/kda/kda.py
+  h_645bbb62f716a9 1498,1506-1511,1515-1526
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "d9937a9508d6a70ceeacb04ba9e5cf2ec694afb4",
+  "prompts": {},
+  "humans": {
+    "h_645bbb62f716a9": {
+      "author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

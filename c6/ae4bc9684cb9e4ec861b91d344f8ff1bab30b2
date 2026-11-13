@@ -1,0 +1,14 @@
+vllm_ascend/patch/worker/patch_ascend_ops.py
+  h_645bbb62f716a9 206-243
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c6ae4bc9684cb9e4ec861b91d344f8ff1bab30b2",
+  "prompts": {},
+  "humans": {
+    "h_645bbb62f716a9": {
+      "author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

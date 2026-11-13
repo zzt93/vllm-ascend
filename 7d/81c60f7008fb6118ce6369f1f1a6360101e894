@@ -1,0 +1,16 @@
+vllm_ascend/attention/mla_v1.py
+  h_645bbb62f716a9 3471-3477
+vllm_ascend/ops/mla.py
+  h_645bbb62f716a9 196,291-301
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "7d81c60f7008fb6118ce6369f1f1a6360101e894",
+  "prompts": {},
+  "humans": {
+    "h_645bbb62f716a9": {
+      "author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

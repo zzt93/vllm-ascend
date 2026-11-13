@@ -1,0 +1,14 @@
+vllm_ascend/utils.py
+  h_645bbb62f716a9 1682-1687
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "12c7ea3a0f502a6756ac040538280e8fae4223ae",
+  "prompts": {},
+  "humans": {
+    "h_645bbb62f716a9": {
+      "author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

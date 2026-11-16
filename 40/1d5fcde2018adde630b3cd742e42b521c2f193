@@ -1,0 +1,28 @@
+tests/ut/attention/test_dsa_cp.py
+  s_2cc68333df9c35::t_fb677b7e8fc480 163,188-194,205-207,214-217,222-223,241-244,247
+  s_2cc68333df9c35::t_ad4a466ee859c4 132-159
+docs/source/user_guide/configuration/additional_config.md
+  s_2cc68333df9c35::t_fb677b7e8fc480 74
+release_notes/fragments/21414.yaml
+  s_2cc68333df9c35::t_fb677b7e8fc480 4
+vllm_ascend/attention/context_parallel/dsa_cp.py
+  s_2cc68333df9c35::t_fb677b7e8fc480 525,597,599,603,665-666
+tests/ut/attention/test_dsa_v1.py
+  s_2cc68333df9c35::t_23cf4feb9a1975 934,945,2013,2019,2022,2185-2186,2217
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "401d5fcde2018adde630b3cd742e42b521c2f193",
+  "prompts": {},
+  "sessions": {
+    "s_2cc68333df9c35": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e26a-eb24-7bd2-8d51-ee7597652dd5",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

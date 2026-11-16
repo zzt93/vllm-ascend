@@ -1,0 +1,14 @@
+tests/ut/worker/test_model_runner_v2.py
+  h_645bbb62f716a9 1316,1319-1321,1390,1393-1395
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "0ec17ab80280a6698fcf99bdd40bdbbb75ae2691",
+  "prompts": {},
+  "humans": {
+    "h_645bbb62f716a9": {
+      "author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

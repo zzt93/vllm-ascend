@@ -1,0 +1,19 @@
+tests/ut/patch/platform/test_patch_kv_cache_admission.py
+  s_df779a246e059c::t_c6f330e6e3d981 209-212,263-266
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "8d51f2fb23044c71a98f2f9a65e466cab81d9630",
+  "prompts": {},
+  "sessions": {
+    "s_df779a246e059c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e303-b5be-7072-a289-c344e6ae6424",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

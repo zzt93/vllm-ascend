@@ -1,0 +1,14 @@
+release_notes/fragments/21414.yaml
+  h_645bbb62f716a9 4-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "d7efc127a34d3f4270ddbe07c4b0570483762363",
+  "prompts": {},
+  "humans": {
+    "h_645bbb62f716a9": {
+      "author": "zzt <zengzetang.zzt@antgroup.com>"
+    }
+  }
+}

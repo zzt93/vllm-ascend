@@ -1,0 +1,27 @@
+vllm_ascend/ops/fused_moe/prepare_finalize.py
+  s_9353a3ff44952b::t_76e194ebc88393 459,525,535-540,549-550,557
+tests/ut/ops/test_routed_experts.py
+  s_9353a3ff44952b::t_76e194ebc88393 5,9,12,15-40
+tests/e2e/nightly/single_node/ops/singlecard_ops/test_pcp_w8a8_routing.py
+  s_9353a3ff44952b::t_76e194ebc88393 1-42
+vllm_ascend/ops/fused_moe/routed_experts.py
+  s_9353a3ff44952b::t_76e194ebc88393 29,716-725,731
+tests/ut/ops/test_prepare_finalize.py
+  s_9353a3ff44952b::t_2cdedf11d900bd 16,390-473
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "0c2cdc5c470d4e63504cb0110ddaff4e1f52d299",
+  "prompts": {},
+  "sessions": {
+    "s_9353a3ff44952b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ec74-b439-76a0-927f-43e9071997d0",
+        "model": "gpt-6.2-sol"
+      },
+      "human_author": "vllm-ascend-ci <ci@example.com>"
+    }
+  }
+}

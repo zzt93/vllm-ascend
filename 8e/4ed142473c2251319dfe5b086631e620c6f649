@@ -1,0 +1,58 @@
+release_notes/fragments/pending-kpool-context-buckets.yaml
+  s_df779a246e059c::t_07a2426902f1c0 1-7
+tests/ut/models/test_glm5next_kpool_model_backend.py
+  s_df779a246e059c::t_0c59915c2b5fe1 224,229,231,323-325
+vllm_ascend/attention/indexer_kpool.py
+  s_df779a246e059c::t_591928394818f8 607-610
+  s_df779a246e059c::t_807d9e7fc16499 24
+  s_6e6a8cbeaea1df::t_3fce1686e29076 26,66,258,603-606,611-614
+tests/e2e/nightly/single_node/ops/singlecard_ops/triton/test_glm5next_kpool_bucket_graph.py
+  s_df779a246e059c::t_c37f7267e4edaf 1-16,18-67
+  s_6e6a8cbeaea1df::t_7bcb6f1659a957 17
+vllm_ascend/models/glm5next/sparse_attn_indexer_kpool.py
+  s_df779a246e059c::t_807d9e7fc16499 12
+  s_6e6a8cbeaea1df::t_1a4059d40a7964 86,152
+tests/ut/compilation/test_kpool_buckets.py
+  s_df779a246e059c::t_07a2426902f1c0 41-52
+  s_df779a246e059c::t_807d9e7fc16499 34
+  s_df779a246e059c::t_9895996498edc6 1-33,35-40
+vllm_ascend/ops/triton/docs/glm5_next_lightning_indexer.md
+  s_df779a246e059c::t_c37f7267e4edaf 51-66
+vllm_ascend/compilation/kpool_buckets.py
+  s_df779a246e059c::t_9c81e724d70579 31
+  s_df779a246e059c::t_9895996498edc6 1-30,32-34
+  s_df779a246e059c::t_807d9e7fc16499 35
+vllm_ascend/ops/triton/glm5_next_lightning_indexer.py
+  s_df779a246e059c::t_807d9e7fc16499 208-261,277,357-414
+  s_df779a246e059c::t_9c81e724d70579 7-8,416
+  s_6e6a8cbeaea1df::t_3c6a8a571f04b3 13-15,207,415,417
+tests/ut/compilation/test_acl_graph.py
+  s_df779a246e059c::t_fdf47548796eef 384,440,520,582,654,734,801
+  s_6e6a8cbeaea1df::t_f34e89a7fb043d 297
+vllm_ascend/compilation/acl_graph.py
+  s_6e6a8cbeaea1df::t_ae4f9fda195aa6 297
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "8e4ed142473c2251319dfe5b086631e620c6f649",
+  "prompts": {},
+  "sessions": {
+    "s_6e6a8cbeaea1df": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ec68-c4e0-70b2-a28f-98b5501f719c",
+        "model": "gpt-6.2-sol"
+      },
+      "human_author": "vllm-ascend-ci <ci@example.com>"
+    },
+    "s_df779a246e059c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e303-b5be-7072-a289-c344e6ae6424",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "vllm-ascend-ci <ci@example.com>"
+    }
+  }
+}

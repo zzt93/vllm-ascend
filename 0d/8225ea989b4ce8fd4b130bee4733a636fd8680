@@ -1,0 +1,19 @@
+release_notes/fragments/22227.yaml
+  s_6e6a8cbeaea1df::t_3d715e6b1707d1 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "0d8225ea989b4ce8fd4b130bee4733a636fd8680",
+  "prompts": {},
+  "sessions": {
+    "s_6e6a8cbeaea1df": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ec68-c4e0-70b2-a28f-98b5501f719c",
+        "model": "gpt-6.2-sol"
+      },
+      "human_author": "vllm-ascend-ci <ci@example.com>"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+tests/ut/ops/test_routed_experts.py
+  s_ebc8cfbf57c5ff::t_252d45f73be538 14,17-18,23-39,42,44,47-48,52-57,59,61-70
+  s_ebc8cfbf57c5ff::t_8907860db31e92 4,12,71
+tests/ut/ops/test_prepare_finalize.py
+  s_ebc8cfbf57c5ff::t_8764df98ca2877 391-392,394-431,433-441
+vllm_ascend/ops/fused_moe/routed_experts.py
+  s_ebc8cfbf57c5ff::t_db5f50d9aee235 32,52-53,739-743
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "16eaf35abca4aa070bbd160e41d78574a0b0cde0",
+  "prompts": {},
+  "sessions": {
+    "s_ebc8cfbf57c5ff": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a2115f-0ce6-73a2-9d70-b49e3e04f241",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "vllm-ascend-ci <ci@example.com>"
+    }
+  }
+}

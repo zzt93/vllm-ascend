@@ -1,0 +1,23 @@
+tests/ut/ops/test_prepare_finalize.py
+  s_ebc8cfbf57c5ff::t_ed035d0923f53a 375
+vllm_ascend/ops/fused_moe/routed_experts.py
+  s_ebc8cfbf57c5ff::t_ed035d0923f53a 741
+tests/e2e/nightly/single_node/ops/singlecard_ops/test_pcp_w8a8_routing.py
+  s_ebc8cfbf57c5ff::t_ed035d0923f53a 22-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "614acef19fd48d44c63b4d48adf940905dc23137",
+  "prompts": {},
+  "sessions": {
+    "s_ebc8cfbf57c5ff": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a2115f-0ce6-73a2-9d70-b49e3e04f241",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "vllm-ascend-ci <ci@example.com>"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+vllm_ascend/attention/mla_v1.py
+  h_72bd12382fe91f 67,1096-1106,1366-1385,1569-1588,1618-1622,1704-1705,2387-2391
+vllm_ascend/ops/antangel_kv.py
+  h_72bd12382fe91f 1-81
+vllm_ascend/ops/bailing_moe_v3_kda.py
+  h_72bd12382fe91f 1-390
+vllm_ascend/ops/gdn.py
+  h_72bd12382fe91f 23-46
+vllm_ascend/ops/mla.py
+  h_72bd12382fe91f 187,277-284
+vllm_ascend/ops/triton/kda/kda.py
+  h_72bd12382fe91f 1459,1467-1470,1474-1485
+vllm_ascend/ops/triton/mamba/causal_conv1d.py
+  h_72bd12382fe91f 15-353
+vllm_ascend/ops/triton/mamba/state_index.py
+  h_72bd12382fe91f 51,55,57,65-67,180-181,189,192-195,205,209,211
+vllm_ascend/patch/worker/patch_triton.py
+  h_72bd12382fe91f 338-375
+vllm_ascend/utils.py
+  h_72bd12382fe91f 951-959,1671-1676
+vllm_ascend/worker/model_runner_v1.py
+  h_72bd12382fe91f 20,205,3769-3773,5804-5814
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c6c8b1b16e7eee2e73e50c753859ff9e891d9d3c",
+  "prompts": {},
+  "humans": {
+    "h_72bd12382fe91f": {
+      "author": "vllm-ascend-ci <ci@example.com>"
+    }
+  }
+}

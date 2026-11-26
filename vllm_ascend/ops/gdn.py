@@ -20,11 +20,30 @@ from functools import lru_cache, wraps
 import torch
 import torch_npu
 from einops import rearrange
-from fla_npu.ops.ascendc import (
-    causal_conv1d_fn,
-    causal_conv1d_update,
-    recurrent_gated_delta_rule,
-)
+@lru_cache(maxsize=1)
+def _fla_ascendc_ops():
+    """Import the fla_npu AscendC package on first use.
+
+    A module-level import builds the OpKernelInfo of every kernel in that
+    package for every model, including models that never run GDN. When an
+    optional kernel there fails to initialise (CausalConv1dBwd), it poisons
+    the stream of an unrelated model, so resolve the package lazily.
+    """
+    from fla_npu.ops import ascendc  # type: ignore[import-not-found]
+
+    return ascendc
+
+
+def causal_conv1d_fn(*args, **kwargs):
+    return _fla_ascendc_ops().causal_conv1d_fn(*args, **kwargs)
+
+
+def causal_conv1d_update(*args, **kwargs):
+    return _fla_ascendc_ops().causal_conv1d_update(*args, **kwargs)
+
+
+def recurrent_gated_delta_rule(*args, **kwargs):
+    return _fla_ascendc_ops().recurrent_gated_delta_rule(*args, **kwargs)
 from torch import nn
 from vllm.distributed import get_pcp_group
 from vllm.forward_context import get_forward_context

@@ -948,6 +948,15 @@ def register_ascend_customop(vllm_config: VllmConfig | None = None):
 
         REGISTERED_ASCEND_OPS["GatedDeltaNetAttention"] = AscendGatedDeltaNetAttention
 
+        if (
+            vllm_config is not None
+            and "BailingMoeV3ForCausalLM" in vllm_config.model_config.architectures
+            and vllm_config.parallel_config.prefill_context_parallel_size == 1
+        ):
+            from vllm_ascend.ops.bailing_moe_v3_kda import AscendBailingMoeV3KimiDeltaAttention
+
+            REGISTERED_ASCEND_OPS["BailingMoeV3KimiDeltaAttention"] = AscendBailingMoeV3KimiDeltaAttention
+
     for name, op_cls in REGISTERED_ASCEND_OPS.items():
         CustomOp.register_oot(_decorated_op_cls=op_cls, name=name)
 
@@ -1658,6 +1667,12 @@ def check_gdn_layer(vllm_config) -> bool:
         # exposes the equivalent is_linear_attn property.
         layer_types = getattr(config, "layer_types", None) or []
         if "linear_attention" in layer_types or bool(getattr(config, "is_linear_attn", False)):
+            return True
+        # BailingMoeV3 (model_type "bailing_hybrid") interleaves KDA layers but
+        # exposes neither layer_types nor is_linear_attn, so key off its
+        # linear-attention config; otherwise the GDN scratch buffers are never
+        # allocated while the DP dummy path still indexes them.
+        if getattr(config, "model_type", "") == "bailing_hybrid" or hasattr(config, "kda_safe_gate"):
             return True
 
     return False

@@ -184,6 +184,7 @@ class AscendMultiHeadLatentAttention(MultiHeadLatentAttentionWrapper):
     ) -> None:
         nn.Module.__init__(self)
         self.hidden_size = hidden_size
+        self.num_heads = num_heads
         self.output_token_shard_size = 1
         self.kv_lora_rank = kv_lora_rank
         self.qk_rope_head_dim = qk_rope_head_dim
@@ -273,7 +274,14 @@ class AscendMultiHeadLatentAttention(MultiHeadLatentAttentionWrapper):
         kv_cache: torch.Tensor | None = None,
         attn_metadata: AttentionMetadata | None = None,
     ) -> torch.Tensor:
-        hidden_dim = self.hidden_size
+        # A passthrough o_proj (BailingMoeV3GatedAttention applies its own gate
+        # and dense projection) expects the raw attention output instead of a
+        # hidden_size-wide projection, so size the buffer from the o_proj width.
+        _o_proj = getattr(getattr(self.mla_attn, 'impl', None), 'o_proj', None)
+        if _o_proj is not None and getattr(_o_proj, 'out_features', None) is None:
+            hidden_dim = self.num_heads * self.v_head_dim
+        else:
+            hidden_dim = self.hidden_size
         num_output_tokens = (hidden_states.shape[0] + self.output_token_shard_size - 1) // self.output_token_shard_size
         output = torch.empty((num_output_tokens, hidden_dim), dtype=hidden_states.dtype, device=hidden_states.device)
 

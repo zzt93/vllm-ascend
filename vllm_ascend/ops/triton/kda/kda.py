@@ -1456,6 +1456,7 @@ def fused_kda_gate(
     g_bias: torch.Tensor | None = None,
     beta: float = 1.0,
     threshold: float = 20.0,
+    lower_bound: float | None = None,
 ) -> torch.Tensor:
     """
     Forward pass for KDA gate:
@@ -1463,14 +1464,29 @@ def fused_kda_gate(
       param A: [H] or [1, 1, H, 1]
       beta: softplus beta parameter
       threshold: softplus threshold parameter
+      lower_bound: when not None, compute the bounded (safe) gate
+          y = lower_bound * sigmoid(exp(A) * (g + bias)) instead of
+          y = -exp(A) * softplus(g + bias). Newer upstream FLA trees pass
+          this argument, so the Ascend replacement must accept it.
       return  : [..., H, D]
     """
     orig_shape = g.shape[:-1]
+    H = A.numel()
+    if lower_bound is not None:
+        # The Triton kernel below only implements the softplus form, so the
+        # bounded gate reuses the host-side implementation shared with the
+        # compute_gate path of chunk_kda / fused_recurrent_kda.
+        return apply_kda_gate(
+            g.view(*orig_shape, H, head_k_dim),
+            A,
+            g_bias,
+            safe_gate=True,
+            lower_bound=lower_bound,
+        )
 
     g = g.view(-1, g.shape[-1])
     T = g.shape[0]
     HD = g.shape[1]
-    H = A.numel()
     assert H * head_k_dim == HD
 
     y = torch.empty_like(g, dtype=torch.float32)

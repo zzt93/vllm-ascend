@@ -335,3 +335,41 @@ except Exception as _cc1d_err:
         " graph capture at decode-FULL.",
         _cc1d_err,
     )
+
+
+# from_import_sweep: bailing_moe_v3 does
+#   from vllm.model_executor.layers.mamba.ops.causal_conv1d import (
+#       causal_conv1d_fn, causal_conv1d_update)
+# at module import time. Rebinding the defining module alone therefore leaves
+# that module-local binding on vLLM's implementation, whose validate_data /
+# .item() host sync aborts ACL graph capture (aclrtSynchronizeStreamWithTimeout
+# 107027). Rebind every module that captured the name, the same way the
+# fused_q_kv_rmsnorm sweep above does it.
+def _sweep_causal_conv1d_from_imports() -> None:
+    import sys as _sys
+
+    targets = {
+        "causal_conv1d_update": getattr(_cc1d, "causal_conv1d_update", None),
+        "causal_conv1d_fn": getattr(_cc1d, "causal_conv1d_fn", None),
+    }
+    for _mod in list(_sys.modules.values()):
+        for _name, _repl in targets.items():
+            if _repl is None:
+                continue
+            try:
+                _cur = getattr(_mod, _name, None)
+            except Exception:
+                continue
+            if _cur is None or _cur is _repl:
+                continue
+            if not str(getattr(_cur, "__module__", "")).startswith(
+                "vllm.model_executor.layers.mamba.ops.causal_conv1d"
+            ):
+                continue
+            try:
+                setattr(_mod, _name, _repl)
+            except Exception:
+                continue
+
+
+_sweep_causal_conv1d_from_imports()

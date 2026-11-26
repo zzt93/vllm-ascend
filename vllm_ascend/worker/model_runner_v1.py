@@ -17,6 +17,7 @@
 # Adapted from vllm-project/vllm/vllm/worker/gpu_model_runner.py
 #
 
+import inspect
 import logging
 import math
 import sys
@@ -201,6 +202,7 @@ from vllm_ascend.spec_decode.utils import (
     correct_optimistic_seq_lens_cpu,
     update_num_computed_tokens_for_batch_change,
 )
+from vllm_ascend.ops.antangel_kv import _reshape_combined_mla_kv_cache, uses_antangel_kv
 from vllm_ascend.utils import (
     calc_split_factor,
     check_gdn_layer,
@@ -3764,7 +3766,11 @@ class NPUModelRunner(GPUModelRunner):
             extra_attn_metadata_args: dict[str, Any] = {}
             if isinstance(builder, GDNAttentionMetadataBuilder) and not is_gdn_noop:
                 assert ubid is None, "UBatching not supported with GDN yet"
-                extra_attn_metadata_args["num_actual_reqs"] = num_reqs
+                # Forward the kwarg only to builders that declare it: the
+                # upstream GDNAttentionMetadataBuilder.build does not accept it,
+                # and passing it blindly raises TypeError for those backends.
+                if "num_actual_reqs" in inspect.signature(builder.build).parameters:
+                    extra_attn_metadata_args["num_actual_reqs"] = num_reqs
                 if use_spec_decode:
                     extra_attn_metadata_args.update(
                         num_accepted_tokens=self.num_accepted_tokens.gpu[:num_reqs_padded],
@@ -5795,6 +5801,17 @@ class NPUModelRunner(GPUModelRunner):
                                 raw_v_tensor = raw_v_tensor[:v_tensor_size]
                         else:
                             k_dim, v_dim = self._get_attention_kv_cache_dims(layer_name, current_kv_cache_spec)
+                            if (
+                                raw_kv_is_combined and self.hybrid_with_attn_and_mamba
+                                and self.use_hybrid_blocks and uses_antangel_kv(self.vllm_config)
+                                and current_kv_cache_spec.dtype == torch.bfloat16
+                                and (k_dim, v_dim) == (512, 64)
+                            ):
+                                kv_caches[layer_name] = _reshape_combined_mla_kv_cache(
+                                    raw_k_tensor, (*kv_cache_shape[:-1], k_dim), (*kv_cache_shape[:-1], v_dim),
+                                    current_kv_cache_spec.dtype, current_kv_cache_spec.page_size_bytes, block_size_chunk,
+                                )
+                                continue
                             nope_size = int(np.prod(kv_cache_shape[:-1])) * k_dim * get_dtype_size(
                                 current_kv_cache_spec.dtype
                             )

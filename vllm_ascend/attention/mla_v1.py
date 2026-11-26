@@ -64,6 +64,7 @@ from vllm_ascend.quantization.methods import (
     AscendW8A8MXFP8DynamicLinearMethod,
 )
 from vllm_ascend.quantization.utils import enable_fa_quant
+from vllm_ascend.ops.antangel_kv import scatter_component, uses_antangel_kv
 from vllm_ascend.utils import (
     ACL_FORMAT_FRACTAL_ND,
     ACL_FORMAT_FRACTAL_NZ,
@@ -1092,6 +1093,17 @@ class AscendMLAImpl(MLAAttentionImpl):
         return None
 
     def process_weights_after_loading(self, act_dtype: torch.dtype):
+        if uses_antangel_kv(self.vllm_config) and getattr(self, "_antangel_workspace", None) is None:
+            capacity = max(self.vllm_config.scheduler_config.max_num_batched_tokens,
+                           max(self.vllm_config.compilation_config.cudagraph_capture_sizes or [0]))
+            block = self.vllm_config.cache_config.block_size
+            shape = (cdiv(capacity, block), block, self.num_kv_heads)
+            device = self.kv_b_proj.weight.device
+            self._antangel_workspace = (
+                torch.empty((*shape, self.kv_lora_rank), device=device, dtype=act_dtype),
+                torch.empty((*shape, self.qk_rope_head_dim), device=device, dtype=act_dtype),
+                torch.arange(capacity, device=device, dtype=torch.int64),
+            )
         # NOTE: We currently do not support quant kv_b_proj.
         assert isinstance(self.kv_b_proj.quant_method, UnquantizedLinearMethod)
         # NOTE: Weight will be reshaped next, we need to revert and transpose it.
@@ -1351,15 +1363,26 @@ class AscendMLAImpl(MLAAttentionImpl):
                 pe_cache = cache_k_pe
                 k_pe = torch.empty(toks, num_heads, rope_dim, dtype=q_pe.dtype, device=q_pe.device)
 
-            DeviceOperator.kv_cache_load(
-                cache_kv_c,
-                pe_cache,
-                context_table,
-                context_seq_len_npu,
-                prefill_metadata.chunked_context.starts[i],
-                key=kv_c_normed,
-                value=k_pe,
-            )
+            if self._uses_antangel_writer((cache_kv_c, pe_cache)):
+                chunk = prefill_metadata.chunked_context
+                offsets = chunk.cu_seq_lens[i]
+                ix = torch.arange(toks, device=cache_kv_c.device, dtype=offsets.dtype)
+                seq = torch.searchsorted(offsets[1:].contiguous(), ix, right=True).long()
+                pos = ix + chunk.starts[i][seq] - offsets[seq]
+                block_size = cache_kv_c.shape[1]
+                block = context_table[seq, (pos // block_size).long()].long()
+                row = (pos % block_size).long()
+                kv_c_normed, k_pe = cache_kv_c[block, row], pe_cache[block, row]
+            else:
+                DeviceOperator.kv_cache_load(
+                    cache_kv_c,
+                    pe_cache,
+                    context_table,
+                    context_seq_len_npu,
+                    prefill_metadata.chunked_context.starts[i],
+                    key=kv_c_normed,
+                    value=k_pe,
+                )
             if rope_dim == 0:
                 k_pe = kv_c_normed.new_empty(toks, num_heads, 0)
             kv_c_normed, k_pe = self._reorg_kvcache(
@@ -1543,6 +1566,26 @@ class AscendMLAImpl(MLAAttentionImpl):
             return k_pe, k_nope
         return kv_cache[1], kv_cache[0]
 
+    def _uses_antangel_writer(self, cache):
+        return getattr(self, "_antangel_workspace", None) is not None and not cache[0].is_contiguous()
+
+    def _write_antangel_kv(self, kv, cos, sin, cache, slots):
+        nope, rope, indices = self._antangel_workspace
+        count = kv.shape[0]
+        if count > indices.numel():
+            raise ValueError("AntAngel KV input exceeds the preallocated workspace")
+        blocks = cdiv(count, nope.shape[1])
+        current_nope = nope.flatten(0, 1)[:count]
+        current_rope = rope.flatten(0, 1)[:count]
+        if count:
+            torch_npu.npu_kv_rmsnorm_rope_cache(
+                kv, self.kv_a_layernorm.weight, cos, sin, indices[:count], rope[:blocks], nope[:blocks],
+                epsilon=self.kv_a_layernorm.variance_epsilon, cache_mode="PA", is_output_kv=False,
+            )
+            scatter_component(current_nope, slots, cache[0])
+            scatter_component(current_rope, slots, cache[1])
+        return current_rope.unsqueeze(2), current_nope.unsqueeze(2)
+
     def _decode_requires_current_kv(self, attn_metadata: AscendMLAMetadata) -> bool:
         return False
 
@@ -1572,6 +1615,11 @@ class AscendMLAImpl(MLAAttentionImpl):
             if return_current_kv:
                 return kv_cache[1], kv_cache[0], *result
             return result
+        if self._uses_antangel_writer(kv_cache):
+            current = self._write_antangel_kv(kv_no_split, cos, sin, kv_cache, slots)
+            if return_current_kv:
+                return kv_cache[1], kv_cache[0], *current
+            return kv_cache[1], kv_cache[0]
         cache_mode = "PA_NZ" if self.enable_kv_nz else "PA"
         c_kv_scale = None
         if self.support_fp8_attention and self.fa_quant_layer:
@@ -1653,6 +1701,8 @@ class AscendMLAImpl(MLAAttentionImpl):
                 k_pe, k_nope = self._exec_kv_mla_nope(
                     kv_no_split, kv_cache, slots, is_prefill=True, skip_padding_slots=self.pcp_enabled
                 )
+            elif self._uses_antangel_writer(kv_cache):
+                k_pe, k_nope = self._write_antangel_kv(kv_no_split, cos, sin, kv_cache, slots)
             else:
                 cache_mode = "PA"
                 c_kv_scale = None
@@ -2334,7 +2384,11 @@ class AscendMLAImpl(MLAAttentionImpl):
         if gate is not None:
             o_proj_input.mul_(torch.sigmoid(gate))
         # O proj
-        output[...] = self.o_proj(o_proj_input, is_prefill=prefill_preprocess_res is not None)[0]
+        if getattr(self.o_proj, 'out_features', None) is None:
+            # Passthrough o_proj: the caller applies its own gate and dense.
+            output[...] = o_proj_input
+        else:
+            output[...] = self.o_proj(o_proj_input, is_prefill=prefill_preprocess_res is not None)[0]
 
         del o_proj_input
         maybe_save_kv_layer_to_connector(layer_name, list(kv_cache))

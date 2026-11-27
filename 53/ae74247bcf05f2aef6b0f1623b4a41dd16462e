@@ -1,0 +1,46 @@
+vllm_ascend/ops/triton/mla_cache_store.py
+  s_d796bed88628a8::t_51b1797791a3a0 3,8-17
+  s_d796bed88628a8::t_eb6555d1620a93 1-2,4-7,18-32
+vllm_ascend/ops/bailing_moe_v3_kda.py
+  s_d796bed88628a8::t_51b1797791a3a0 50-52,57-68,70-81,103-114,123-128,130-135
+  s_d796bed88628a8::t_0258d57b95086d 91-92
+  s_d796bed88628a8::t_5b86845c76cc34 1-7,9-17,19-49,53-56,69,82-86,88-90,93-94,97-102,115-122,129,136-137
+  s_d796bed88628a8::t_eb6555d1620a93 8,18,87,95-96
+vllm_ascend/ops/mla.py
+  s_d796bed88628a8::t_eb6555d1620a93 38,199-207,266,308
+vllm_ascend/utils.py
+  s_d796bed88628a8::t_eb6555d1620a93 1031-1045,1819-1820
+docs/source/user_guide/support_matrix/supported_models.md
+  s_d796bed88628a8::t_51b1797791a3a0 22-23
+tests/e2e/pull_request/one_card/test_bailing_mla_cache_write.py
+  s_d796bed88628a8::t_51b1797791a3a0 1-32
+vllm_ascend/worker/worker.py
+  s_d796bed88628a8::t_51b1797791a3a0 124
+  s_d796bed88628a8::t_eb6555d1620a93 632-634
+vllm_ascend/ops/triton/mamba/state_index.py
+  s_d796bed88628a8::t_5b86845c76cc34 51,55,57,65-67,180-181,189,192-195,205,209,211
+vllm_ascend/attention/mla_v1.py
+  s_d796bed88628a8::t_0258d57b95086d 3637
+  s_d796bed88628a8::t_eb6555d1620a93 1093,2024-2025,2033,2062-2063,2098-2102,2108,3638-3640
+  s_d796bed88628a8::t_51b1797791a3a0 83,2026-2032,2103-2107
+tests/ut/ops/test_bailing_moe_v3_kda.py
+  s_d796bed88628a8::t_8c42191aa1f639 82-131
+  s_d796bed88628a8::t_0258d57b95086d 1-16,21-22,30,40,46,62-63,75-77,81
+  s_d796bed88628a8::t_51b1797791a3a0 17-20,23-29,31-39,41-45,47-61,64-74,78-80
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "53ae74247bcf05f2aef6b0f1623b4a41dd16462e",
+  "prompts": {},
+  "sessions": {
+    "s_d796bed88628a8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a215a4-f1e8-7071-b526-ca6f0b5b482c",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "vllm-ascend-ci <ci@example.com>"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+release_notes/fragments/23552.yaml
+  s_d796bed88628a8::t_561a2cf963d494 1-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "48a867ab208492fbb4e35ef8c0a22333f18cfed9",
+  "prompts": {},
+  "sessions": {
+    "s_d796bed88628a8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a215a4-f1e8-7071-b526-ca6f0b5b482c",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "vllm-ascend-ci <ci@example.com>"
+    }
+  }
+}
